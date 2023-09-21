@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "sort.h"
-
+void swap(int *first, int *second);
 /**
  * print_list - Prints a list of integers
  *
