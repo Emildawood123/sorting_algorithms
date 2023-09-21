@@ -8,18 +8,31 @@
 */
 void selection_sort(int *array, size_t size)
 {
+int *curr;
+int num;
+int swapped;
 size_t i, j;
 for (i = 0; i < size; i++)
 {
 j = i + 1;
+num = array[i];
+swapped = 0;
 while (j < size)
 {
-if (array[i] > array[j])
+
+if (num > array[j])
 {
-swap(&array[i], &array[j]);
+num = array[j];
+curr = &array[j];
+swapped = 1;
 }
 j++;
 }
+if (swapped == 0)
+{
+continue;
+}
+swap(&array[i], curr);
 print_array(array, size);
 }
 }
