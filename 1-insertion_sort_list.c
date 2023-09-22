@@ -1,54 +1,58 @@
 #include "sort.h"
- /**
-  * insertion_sort_list - that funcation sort list by insertion sort
-  * @list: list
-  * Return: void
- */
+/**
+ * insertion_sort_list - funcation to sort by insertation
+ * @list: list
+ * Return: void
+*/
 void insertion_sort_list(listint_t **list)
 {
-    listint_t *item = *list;
-    listint_t *temp;
-    temp = malloc(sizeof(listint_t));
-    while (item->next)
-    {
-        temp = item->next;
-        if (item->n > temp->n)
-        {
-            if (temp->next == NULL)
-            {
-            item->prev->next = temp;
-            item->next = NULL;
-            temp->prev = item->prev;
-            item->prev = temp;
-            temp->next = item;
-            print_list(*list);
-            item = *list;
-            }
-            else if (item->prev == NULL)
-            {
-            temp->prev =  NULL;
-            item->prev = temp;
-            item->next = temp->next;
-            temp->next = item;
-            print_list(*list);
-            *list = temp;
-            item = *list;
-            }
-            else
-            {
-            item->prev->next = temp;
-            temp->prev = item->prev;
-            temp->next->prev = item;
-            item->next = temp->next;
-            temp->next = item;
-            item->prev = temp;
-            print_list(*list);
-            item = *list;
-            }
-        }
-        else
-        {
-        item = item->next;
-        }
-    }
+listint_t *item = *list;
+listint_t *temp;
+temp = malloc(sizeof(listint_t));
+while (item->next)
+{
+temp = item->next;
+if (item->n > temp->n)
+{
+swap_list(&item, &temp, list);
+print_list(*list);
+item = *list;
+}
+else
+{
+item = item->next;
+}
+}
+}
+/**
+ * swap_list - that to swap to node in linked
+ * @first: first
+ * @second: second
+ * @list: head of linkedlist
+ * Return: void
+*/
+void swap_list(listint_t **first, listint_t **second, listint_t **list)
+{
+if ((*first)->prev == NULL)
+{
+(*first)->next = (*second)->next;
+(*second)->next->prev = *first;
+(*second)->prev = NULL;
+*list = *second;
+}
+else if ((*second)->next == NULL)
+{
+(*first)->prev->next = *second;
+(*first)->next = NULL;
+(*second)->prev = (*first)->prev;
+}
+else
+{
+(*first)->prev->next = *second;
+(*second)->prev = (*first)->prev;
+(*second)->next->prev = *first;
+(*first)->next = (*second)->next;
+}
+(*second)->next = *first;
+(*first)->prev = *second;
 }
