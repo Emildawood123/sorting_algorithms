@@ -23,4 +23,10 @@ void swap(int *first, int *second);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void swap_list(listint_t **first, listint_t **second, listint_t **list);
+void quick_sort(int *array, size_t size);
+void shell_sort(int *array, size_t size);
+void cocktail_sort_list(listint_t **list);
+int partation(int *arr, int low, int up);
+void quick(int *arr, int low, int up, int size);
+void quick_sort(int *array, size_t size);
 #endif
