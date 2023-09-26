@@ -6,7 +6,7 @@
  * @up: up
  * Return: i + 1
 */
-int partation(int arr[], int lower, int up)
+int partation(int arr[], int lower, int up, int size)
 {
 int i = (lower - 1);
 int piv = arr[up];
@@ -21,6 +21,7 @@ swap(&arr[i], &arr[j]);
 j++;
 }
 swap(&arr[i + 1], &arr[up]);
+print_array(arr, size);
 return (i + 1);
 }
 /**
@@ -47,7 +48,7 @@ void quick(int arr[], int low, int up, int size)
 {
 if (up > low)
 {
-int par = partation(arr, low, up);
+int par = partation(arr, low, up, size);
 quick(arr, low, par - 1, size);
 quick(arr, par + 1, up, size);
 print_array(arr, size);
